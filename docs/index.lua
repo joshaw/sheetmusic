@@ -69,9 +69,9 @@ h3 { margin: 0; }
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
-	-moz-columns: 14em;
-	-webkit-columns: 14em;
-	columns: 14em;
+	-moz-columns: 15em;
+	-webkit-columns: 15em;
+	columns: 15em;
 }
 .artist { 
 	padding: 0.3em;
@@ -79,9 +79,9 @@ h3 { margin: 0; }
 	page-break-inside: avoid;
 }
 .songs {
-	-moz-columns: 14em;
-	-webkit-columns: 14em;
-	columns: 18em;
+	-moz-columns: 20em;
+	-webkit-columns: 20em;
+	columns: 20em;
 }
 .small { font-size: xx-small; }
 </style>
@@ -111,8 +111,9 @@ printf('<h2>Songs</h2>\n')
 printf('<ul class="songs">\n')
 for i=1, #songs do
 	local s = songs[i]
-	printf('<li><a href="%s">%s</a> <span class="small">(%s)</span></li>\n', 
-		s.path, s.name, s.artist)
+	local size = human_bytes(s.size)
+	printf('<li><a href="%s">%s</a> <span class="small">(%s, %s)</span></li>\n', 
+		s.path, s.name, s.artist, size)
 end
 printf('</ul>\n')
 printf('<span class="small">%s</span>\n', os.date('%c'))
