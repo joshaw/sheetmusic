@@ -31,11 +31,12 @@ local function list_dir(dir)
 		if f == '.' or f == '..' then
 			--
 		elseif attrs.mode == 'file' then
-			local artist, song = f:match('^([^%-]+) %- ([^%-]+)%..+')
+			local artist, song = f:match('^([^%-]+)_%-_([^%-]+)%..+')
 			if not artist then
 				artist = 'Unknown'
 				song = f
 			end
+			artist = artist:gsub('_', ' ')
 			song = song:gsub('_', ' ')
 			local size = attrs.size
 			local entry = {name=song, path=path, size=size, artist=artist}
@@ -52,7 +53,7 @@ local function list_dir(dir)
 	end
 end
 
-list_dir('.')
+list_dir('sheetmusic')
 table.sort(artists)
 table.sort(songs, function(a,b) return a.name < b.name end)
 
@@ -60,10 +61,10 @@ printf([[
 <!DOCTYPE html>
 <html>
 <head>
+<link rel='stylesheet' href='css.css'>
 <style>
-h3 {
-	margin: 0;
-}
+body { padding: 0 2em; }
+h3 { margin: 0; }
 .artists {
 	padding: 0;
 	margin: 0;
@@ -73,7 +74,6 @@ h3 {
 	columns: 14em;
 }
 .artist { 
-	background: #f9f9f9;
 	padding: 0.3em;
 	margin: 0 0 1em;
 	page-break-inside: avoid;
@@ -83,9 +83,7 @@ h3 {
 	-webkit-columns: 14em;
 	columns: 18em;
 }
-.small {
-	font-size: xx-small;
-}
+.small { font-size: xx-small; }
 </style>
 </head>
 <body>
@@ -102,7 +100,7 @@ for i=1, #artists do
 	for i=1, #songs do
 		local s = songs[i]
 		local size = human_bytes(s.size)
-		printf('<li><a href="%s">%s <span class="small">(%s)</span></a></li>\n', 
+		printf('<li><a href="%s">%s</a> <span class="small">(%s)</span></li>\n', 
 			s.path, s.name, size)
 	end
 	printf('</ul></li>\n')
@@ -113,6 +111,9 @@ printf('<h2>Songs</h2>\n')
 printf('<ul class="songs">\n')
 for i=1, #songs do
 	local s = songs[i]
-	printf('<li><a href="%s">%s</a> (%s)</li>\n', s.path, s.name, s.artist)
+	printf('<li><a href="%s">%s</a> <span class="small">(%s)</span></li>\n', 
+		s.path, s.name, s.artist)
 end
 printf('</ul>\n')
+printf('<span class="small">%s</span>\n', os.date('%c'))
+printf('</body></html>\n')

@@ -1,0 +1,264 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	color: black;
+	background-color: #F8F8F8;
+}
+.body {
+	padding: 0 1em 1em 1em;
+	margin: 0 auto 0 160px;
+	width: auto;
+}
+#menu {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+}
+.clear {
+	clear: both;
+}
+p {
+	margin: 1em 0;
+	line-height: 1.5em;
+}
+table {
+	border-collapse: separate;
+	border-spacing: 4px 0;
+	font-size: inherit;
+	margin: 1em;
+}
+table th {
+	border-bottom: 1px solid #bbb;
+	padding: .3em .3em;
+}
+table td {
+	border-bottom: 1px solid #ddd;
+	padding: .3em 1em;
+}
+table td p {
+	margin: 0;
+}
+/*table tbody tr:nth-child(2n+1) {
+	background: #eee;
+}*/
+tbody tr:hover {
+	background: #eeeeee;
+}
+select, option {
+	padding: 0 .25em;
+}
+pre, code {
+	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+}
+pre {
+	margin: 1em 0;
+	font-size: 12px;
+	background-color: #eee;
+	border: 1px solid #ddd;
+	padding: 5px;
+	line-height: 1.5em;
+	color: #444;
+	overflow: auto;
+}
+pre code {
+	padding: 0;
+	font-size: 12px;
+	background-color: #eee;
+	border: none;
+}
+code {
+	font-size: 12px;
+	background-color: #f8f8ff;
+	color: #444;
+	padding: 0 .2em;
+	border: 1px solid #dedede;
+}
+img {
+	border: 0;
+	max-width: 100%;
+}
+a {
+	color: #4183c4;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a code, a:link code, a:visited code {
+	color: #4183c4;
+}
+h1 {
+	font-size: 230%;
+	padding-top: 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.8em;
+}
+h2 {
+	font-size: 200%;
+	margin-top: 1em;
+	margin-bottom: 0.2em;
+}
+h3 {
+	font-size: 150%;
+	margin-top: 1.5em;
+	margin-bottom: 0.2em;
+}
+h4 {
+	font-size: 150%;
+	margin-top: 1.3em;
+	margin-bottom: 0.2em;
+}
+hr {
+	border: 1px solid #ddd;
+}
+ul {
+	margin: 1em 0 1em 2em;
+}
+ol {
+	margin: 1em 0 1em 2em;
+}
+ul li, ol li {
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+ul ul, ul ol, ol ol, ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+blockquote {
+	margin: 1em 0;
+	border-left: 5px solid #ddd;
+	padding-left: .6em;
+	color: #555;
+}
+dt {
+	float: left;
+	font-weight: bold;
+}
+dt:after{
+	content: ":";
+}
+dd {
+	margin: 0 0 0 110px;
+	padding: 0 0 0.5em 0;
+}
+sup {
+	font-size: 0.83em;
+	vertical-align: super;
+	line-height: 0;
+}
+.right {
+	text-align: right;
+}
+.selected {
+	color: #eceff1;
+	background: #455a64;
+}
+
+/* -- Books ---------------------------------------------------------------- */
+.banner {
+	display: block;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	width: 100%;
+	background: #cfd8dc;
+}
+.book {
+	padding: 1em 0 0 120px;
+	position: relative;
+}
+.book img {
+	position: absolute;
+	left: 0;
+	top: 1em;
+}
+.bookcover {
+	float:left; 
+	padding:10px; 
+	width:100px; 
+	height: 200px;
+}
+.bookread {
+	background: #eeeeee;
+}
+
+/* -- Timeline ------------------------------------------------------------- */
+.timeline .films {background: #64b5f6;}/*Blue*/
+.timeline .books {background: #9575cd;}/*Deep purple*/
+.timeline .times {background: #4db6ac;}/*Teal*/
+.timeline .fuel  {background: #aed581;}/*Light green*/
+.timeline .hols  {background: #e57373;}/*Red*/
+
+.timeline #today {background-color: #cfd8dc;}
+.timeline td a {color: black;}
+.timeline tr td {
+	vertical-align:top;
+	margin: 0;
+	padding: 0;
+}
+
+/* -- Transactions --------------------------------------------------------- */
+.transactions .boxminus {fill: red;  }
+.transactions .boxplus  {fill: green;}
+
+/* -- Tree ----------------------------------------------------------------- */
+.tree a:visited {
+	text-decoration: none;
+	background-color: transparent;
+}
+.tree a:link    {
+	text-decoration: none;
+}
+.tree a:hover   {
+	text-decoration: underline;
+}
+.tree a:active  {
+	color: #000000;
+	background-color: transparent;
+}
+
+.tree .file {color: black;  }
+.tree .dir  {color: #4183c4;}
+
+::-moz-selection { /* Code for Firefox */
+	background: #cfd8dc;
+}
+::selection {
+	background: #cfd8dc;
+}
+/* ------------------------------------------------------------------------- */
+@media screen and (max-width: 800px) {
+	.body { 
+		width: auto; 
+		margin: 0; 
+		padding: 0 0.2em 0 0.2em;
+	}
+	#menu { 
+		display: none; 
+		left: 0.2em;
+	}
+	table { margin: 0; }
+	table td { padding: 0.2em; }
+	.book {
+		padding: 10px 10px 10px 0;
+		position: absolute;
+	}
+	.book img {
+		position: initial;
+	}
+}
+@media print {
+	body {
+		background-color: #ffffff
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
