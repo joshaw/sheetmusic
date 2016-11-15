@@ -63,7 +63,7 @@ printf([[
 <head>
 <link rel='stylesheet' href='css.css'>
 <style>
-body { padding: 0 2em; }
+body { padding: 0 2vw; }
 h3 { margin: 0; }
 .artists {
 	padding: 0;
