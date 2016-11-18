@@ -1,5 +1,5 @@
 -- Created:  Sun 13 Nov 2016
--- Modified: Mon 14 Nov 2016
+-- Modified: Fri 18 Nov 2016
 -- Author:   Josh Wainwright
 -- Filename: index.lua
 
@@ -7,6 +7,9 @@ local lfs = require('lfs')
 local sheets = {}
 local artists = {}
 local songs = {}
+
+local total_size = 0
+local total_n = 0
 
 local function printf(str, ...)
 	io.write(str:format(...))
@@ -31,6 +34,7 @@ local function list_dir(dir)
 		if f == '.' or f == '..' then
 			--
 		elseif attrs.mode == 'file' then
+			total_n = total_n + 1
 			local artist, song = f:match('^([^%-]+)_%-_([^%-]+)%..+')
 			if not artist then
 				artist = 'Unknown'
@@ -39,6 +43,7 @@ local function list_dir(dir)
 			artist = artist:gsub('_', ' ')
 			song = song:gsub('_', ' ')
 			local size = attrs.size
+			total_size = total_size + size
 			local entry = {name=song, path=path, size=size, artist=artist}
 			songs[#songs+1] = entry
 			if sheets[artist] then
@@ -88,7 +93,7 @@ h3 { margin: 0; }
 </head>
 <body>
 ]])
-printf('<h1>Sheet Music</h1>\n')
+printf('<h1>Sheet Music (%i, %s)</h1>\n', total_n, human_bytes(total_size))
 printf('<h2>Artists</h2>\n')
 printf('<ul class="artists">\n')
 for i=1, #artists do
