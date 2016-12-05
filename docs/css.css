@@ -44,7 +44,7 @@ table td p {
 /*table tbody tr:nth-child(2n+1) {
 	background: #eee;
 }*/
-tbody tr:hover {
+tr:hover {
 	background: #eeeeee;
 }
 select, option {
@@ -81,7 +81,7 @@ img {
 	max-width: 100%;
 }
 a {
-	color: #4183c4;
+	color: #3f51b5;
 	text-decoration: none;
 }
 a:hover {
@@ -91,34 +91,26 @@ a code, a:link code, a:visited code {
 	color: #4183c4;
 }
 h1 {
-	font-size: 230%;
-	padding-top: 0.5em;
-	margin-top: 0.5em;
-	margin-bottom: 0.8em;
+	font-size: 240%;
+	margin-top: 1em;
 }
 h2 {
-	font-size: 200%;
-	margin-top: 1em;
-	margin-bottom: 0.2em;
+	font-size: 210%;
+	margin-top: 0.7em;
 }
 h3 {
-	font-size: 150%;
-	margin-top: 1.5em;
-	margin-bottom: 0.2em;
+	font-size: 180%;
+	margin-top: 0.4em;
 }
 h4 {
 	font-size: 150%;
-	margin-top: 1.3em;
-	margin-bottom: 0.2em;
+	margin-top: 0.2em;
 }
 hr {
 	border: 1px solid #ddd;
 }
-ul {
-	margin: 1em 0 1em 2em;
-}
-ol {
-	margin: 1em 0 1em 2em;
+ul, ol {
+	margin: 0.5em 0 0.5em 2em;
 }
 ul li, ol li {
 	margin-top: .5em;
@@ -153,13 +145,17 @@ sup {
 .right {
 	text-align: right;
 }
-.selected {
+tr:target {
 	color: #eceff1;
-	background: #455a64;
+	background-color: #607d8b;
 }
-
-/* -- Books ---------------------------------------------------------------- */
-.banner {
+tr:target:hover {
+	background-color: #455A64;
+}
+tr:target a {
+	color: #c5cae9;
+}
+#banner {
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -167,6 +163,18 @@ sup {
 	width: 100%;
 	background: #cfd8dc;
 }
+.floatleft {
+	float: left;
+}
+div.hidden {
+	clear: both;
+	display: none;
+}
+div:target {
+	display: block;
+}
+
+/* -- Books ---------------------------------------------------------------- */
 .book {
 	padding: 1em 0 0 120px;
 	position: relative;
@@ -184,21 +192,6 @@ sup {
 }
 .bookread {
 	background: #eeeeee;
-}
-
-/* -- Timeline ------------------------------------------------------------- */
-.timeline .films {background: #64b5f6;}/*Blue*/
-.timeline .books {background: #9575cd;}/*Deep purple*/
-.timeline .times {background: #4db6ac;}/*Teal*/
-.timeline .fuel  {background: #aed581;}/*Light green*/
-.timeline .hols  {background: #e57373;}/*Red*/
-
-.timeline #today {background-color: #cfd8dc;}
-.timeline td a {color: black;}
-.timeline tr td {
-	vertical-align:top;
-	margin: 0;
-	padding: 0;
 }
 
 /* -- Transactions --------------------------------------------------------- */
@@ -240,6 +233,11 @@ sup {
 	#menu { 
 		display: none; 
 		left: 0.2em;
+		width: 80%;
+	}
+	#banner:hover #menu {
+		display: inherit;
+		background-color: #f8f8f8;
 	}
 	table { margin: 0; }
 	table td { padding: 0.2em; }
