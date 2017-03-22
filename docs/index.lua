@@ -1,5 +1,5 @@
 -- Created:  Sun 13 Nov 2016
--- Modified: Wed 07 Dec 2016
+-- Modified: Fri 03 Mar 2017
 -- Author:   Josh Wainwright
 -- Filename: index.lua
 
@@ -68,6 +68,7 @@ printf([[
 <head>
 <link rel='stylesheet' href='css.css'>
 <meta name=viewport content="width=device-width, user-scalable=no, initial-scale=1">
+<title>Sheet Music</title>
 <style>
 body { padding: 0 2vw; }
 h3 { margin: 0; }

@@ -3,7 +3,7 @@
 	padding: 0;
 }
 body {
-	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	font: 14px helvetica, arial, freesans, clean, sans-serif;
 	color: black;
 	background-color: #F8F8F8;
 }
@@ -11,6 +11,9 @@ body {
 	padding: 0 1em 1em 1em;
 	margin: 0 auto 0 160px;
 	width: auto;
+}
+.date {
+	font-size: xx-small;
 }
 #menu {
 	position: absolute;
@@ -33,6 +36,10 @@ table {
 table th {
 	border-bottom: 1px solid #bbb;
 	padding: .3em .3em;
+}
+table th[colspan]:not(:empty) {
+	border-right: 1px solid #bbb;
+	border-left: 1px solid #bbb;
 }
 table td {
 	border-bottom: 1px solid #ddd;
@@ -112,9 +119,11 @@ hr {
 ul, ol {
 	margin: 0.5em 0 0.5em 2em;
 }
-ul li, ol li {
-	margin-top: .5em;
-	margin-bottom: .5em;
+li {
+	margin: 0.3em;
+}
+li:last-child {
+	margin-bottom: 0.8em;
 }
 ul ul, ul ol, ol ol, ol ul {
 	margin-top: 0;
@@ -145,6 +154,9 @@ sup {
 .right {
 	text-align: right;
 }
+.nowrap {
+	white-space: nowrap;
+}
 tr:target {
 	color: #eceff1;
 	background-color: #607d8b;
@@ -174,29 +186,6 @@ div:target {
 	display: block;
 }
 
-/* -- Transactions --------------------------------------------------------- */
-.transactions .boxminus {fill: red;  }
-.transactions .boxplus  {fill: green;}
-
-/* -- Tree ----------------------------------------------------------------- */
-.tree a:visited {
-	text-decoration: none;
-	background-color: transparent;
-}
-.tree a:link    {
-	text-decoration: none;
-}
-.tree a:hover   {
-	text-decoration: underline;
-}
-.tree a:active  {
-	color: #000000;
-	background-color: transparent;
-}
-
-.tree .file {color: black;  }
-.tree .dir  {color: #4183c4;}
-
 ::-moz-selection { /* Code for Firefox */
 	background: #cfd8dc;
 }
@@ -213,7 +202,9 @@ div:target {
 	#menu { 
 		display: none; 
 		left: 0.2em;
-		width: 80%;
+		width: 60%;
+		border-right: solid 1px #bbb;
+		border-bottom: solid 1px #bbb;
 	}
 	#banner:hover #menu {
 		display: inherit;
