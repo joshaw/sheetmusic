@@ -94,8 +94,8 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-a code, a:link code, a:visited code {
-	color: #4183c4;
+a[href^="http"]:hover { /* External links */
+	color: #f44336;
 }
 h1 {
 	font-size: 240%;
@@ -194,13 +194,13 @@ div:target {
 }
 /* ------------------------------------------------------------------------- */
 @media screen and (max-width: 800px) {
-	.body { 
-		width: auto; 
-		margin: 0; 
+	.body {
+		width: auto;
+		margin: 0;
 		padding: 0 0.2em 0 0.2em;
 	}
-	#menu { 
-		display: none; 
+	#menu {
+		display: none;
 		left: 0.2em;
 		width: 60%;
 		border-right: solid 1px #bbb;
@@ -212,13 +212,6 @@ div:target {
 	}
 	table { margin: 0; }
 	table td { padding: 0.2em; }
-	.book {
-		padding: 10px 10px 10px 0;
-		position: absolute;
-	}
-	.book img {
-		position: initial;
-	}
 }
 @media print {
 	body {
