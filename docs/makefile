@@ -1,5 +1,5 @@
 # Created:  Mon 14 Nov 2016
-# Modified: Wed 22 Mar 2017
+# Modified: Fri 13 Apr 2018
 # Author:   Josh Wainwright
 # Filename: makefile
 
@@ -9,7 +9,7 @@ all: index.html
 
 index.html: index.lua makefile $(SHEETS)
 	lua index.lua > index.html
-	cp $$WIKIDIR/res/css.css .
+	#cp $$WIKIDIR/res/css.css .
 
 commit:
 	git add -A
