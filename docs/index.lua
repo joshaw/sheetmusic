@@ -1,12 +1,14 @@
 -- Created:  Sun 13 Nov 2016
--- Modified: Fri 03 Mar 2017
+-- Modified: Fri 09 Nov 2018
 -- Author:   Josh Wainwright
 -- Filename: index.lua
 
 local lfs = require('lfs')
 local sheets = {}
 local artists = {}
-local songs = {}
+local allsongs = {}
+
+local mappings = dofile('mappings.lua')
 
 local total_size = 0
 local total_n = 0
@@ -18,13 +20,20 @@ end
 -- Convert bytes to kilo-, mega-, or giga-bytes
 local suffixes = {'B', 'K', 'M', 'G'}
 local function human_bytes(bytes)
-	if bytes <= 0 then return '' end
+	if bytes <= 0 then return '-' end
 	local n = 1
 	while bytes >= 1024 do
 		n = n + 1
 		bytes = bytes / 1024
 	end
 	return string.format('%.0f%s', bytes, suffixes[n])
+end
+
+local function split_artist_song(str)
+	local artist, song = str:match('^([^%-]+)_%-_([^%-]+)%..+')
+	artist = artist:gsub('_', ' ')
+	song = song:gsub('_', ' ')
+	return artist, song
 end
 
 local function list_dir(dir)
@@ -35,17 +44,15 @@ local function list_dir(dir)
 			--
 		elseif attrs.mode == 'file' then
 			total_n = total_n + 1
-			local artist, song = f:match('^([^%-]+)_%-_([^%-]+)%..+')
+			local artist, song = split_artist_song(f)
 			if not artist then
 				artist = 'Unknown'
 				song = f
 			end
-			artist = artist:gsub('_', ' ')
-			song = song:gsub('_', ' ')
 			local size = attrs.size
 			total_size = total_size + size
 			local entry = {name=song, path=path, size=size, artist=artist}
-			songs[#songs+1] = entry
+			allsongs[#allsongs+1] = entry
 			if sheets[artist] then
 				table.insert(sheets[artist], entry)
 			else
@@ -59,8 +66,29 @@ local function list_dir(dir)
 end
 
 list_dir('sheetmusic')
+
+for file, contents in pairs(mappings) do
+	local artist, _ = split_artist_song(file)
+
+	for i=1, #contents do
+		if not sheets[artist] then
+			sheets[artist] = {}
+			artists[#artists+1] = artist
+		end
+
+		local num, song = contents[i]:match('^(%d+),(.*)$')
+		local path = ('sheetmusic/%s#page=%i'):format(file, num)
+		local entry = {name=song, path=path, size=0, artist=artist}
+		table.insert(sheets[artist], entry)
+		allsongs[#allsongs+1] = entry
+	end
+end
+
 table.sort(artists)
-table.sort(songs, function(a,b) return a.name < b.name end)
+table.sort(allsongs, function(a,b) return a.name < b.name end)
+for artist, tbl in pairs(sheets) do
+	table.sort(tbl, function(a,b) return a.name < b.name end)
+end
 
 printf([[
 <!DOCTYPE html>
@@ -95,7 +123,7 @@ h3 { margin: 0; }
 </head>
 <body>
 ]])
-printf('<h1>Sheet Music (%i, %s)</h1>\n', total_n, human_bytes(total_size))
+printf('<h1>Sheet Music (%i, %s)</h1>\n', #allsongs, human_bytes(total_size))
 printf('<h2>Artists</h2>\n')
 printf('<ul class="artists">\n')
 for i=1, #artists do
@@ -116,8 +144,8 @@ printf('</ul>\n')
 
 printf('<h2>Songs</h2>\n')
 printf('<ul class="songs">\n')
-for i=1, #songs do
-	local s = songs[i]
+for i=1, #allsongs do
+	local s = allsongs[i]
 	local size = human_bytes(s.size)
 	printf('<li><a href="%s">%s</a> <span class="small">(%s, %s)</span></li>\n', 
 		s.path, s.name, s.artist, size)
